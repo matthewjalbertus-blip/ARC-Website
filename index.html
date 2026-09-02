@@ -475,7 +475,6 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
         <a href="#reviews">Reviews</a>
         <a href="#faq">Questions</a>
         <button class="nav-cta nav-cta-roofr" type="button" onclick="document.getElementById('roofr-modal').classList.add('is-open')">Instant Estimate</button>
-        <a class="nav-cta" href="#contact">Free Estimate</a>
       </nav>
     </div>
   </header>
@@ -496,7 +495,7 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
           <p class="hero-lede">ARC gives homeowners clear answers before work begins: documented findings, a defined scope, property-first execution, and accountability through final walkthrough.</p>
           <div class="hero-alert"><span class="signal" aria-hidden="true"></span><div><strong>Active leak, missing shingles, or recent storm damage?</strong> <a href="#storm">Start with a documented inspection.</a></div></div>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Request a free estimate <span>→</span></a>
+            <a class="btn btn-primary" href="#contact">Schedule an Appointment <span>→</span></a>
             <a class="btn btn-secondary" href="tel:+17703760701">Call or text ARC <span>↗</span></a>
           </div>
         </div>
@@ -759,7 +758,7 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
           <label>Service needed<select name="service" required><option value="">Select one</option><option>Roof replacement</option><option>Roof repair</option><option>Storm damage inspection</option><option>Roof inspection</option><option>Gutters &amp; drainage</option><option>Commercial roofing</option><option>Other</option></select></label>
           <label>What are you seeing? <span class="optional">optional</span><textarea name="message" rows="3" placeholder="Leak, missing shingles, storm date, roof age, timing, etc."></textarea></label>
           <label class="check-field"><input type="checkbox" name="urgent"><span>This is an active leak or time-sensitive storm concern.</span></label>
-          <button class="btn btn-primary submit-btn" type="submit">Request my free estimate <span>→</span></button>
+          <button class="btn btn-primary submit-btn" type="submit">Schedule an Appointment <span>→</span></button>
           <p class="form-success" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -773,7 +772,7 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
         <span class="brand-copy"><strong>Albertus Robinson Construction</strong><small>Veteran owned · Carrollton, GA</small></span>
       </a>
       <p><strong>Built on integrity. Built to last. Built by ARC.</strong><br><span>Roofing and exterior solutions for West Georgia and metro Atlanta.</span></p>
-      <div class="footer-links"><a href="#services">Services</a><a href="#cover">Core Values</a><a href="#faq">Questions</a><a href="#contact">Free Estimate</a></div>
+      <div class="footer-links"><a href="#services">Services</a><a href="#cover">Core Values</a><a href="#faq">Questions</a><a href="#contact">Schedule an Appointment</a></div>
     </div>
     <div class="shell footer-bottom"><span>© <span id="year"></span> Albertus Robinson Construction. All rights reserved.</span><span>(770) 376-0701 · sales@builtbyarc.pro · Carrollton, GA</span></div>
   </footer>
@@ -849,14 +848,14 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
             success.style.color = '#a01717';
             success.textContent = 'Something went wrong. Please call or text us at (770) 376-0701.';
             btn.disabled = false;
-            btn.innerHTML = 'Request my free estimate <span>→</span>';
+            btn.innerHTML = 'Schedule an Appointment <span>→</span>';
           }
         })
         .catch(function(){
           success.style.color = '#a01717';
           success.textContent = 'Something went wrong. Please call or text us at (770) 376-0701.';
           btn.disabled = false;
-          btn.innerHTML = 'Request my free estimate <span>→</span>';
+          btn.innerHTML = 'Schedule an Appointment <span>→</span>';
         });
     });
   }
