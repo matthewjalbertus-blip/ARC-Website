@@ -542,6 +542,76 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
     .top-rail-social a svg { width:12px; height:12px; }
   }
 
+  
+  /* ── YouTube Section ─────────────────────────────────────── */
+  .yt-section { background:var(--surface-1,#0a0f1e); padding:80px 0; }
+  .yt-layout { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .yt-copy { }
+  .yt-copy h2 { margin:0 0 14px; font-size:clamp(24px,2.6vw,36px); letter-spacing:-.04em; color:#fff; }
+  .yt-copy p { color:#a9bdd6; font-size:15px; line-height:1.65; margin:0 0 28px; }
+  .yt-subscribe {
+    display:inline-flex; align-items:center; gap:10px;
+    background:#ff0000; color:#fff; padding:12px 22px;
+    font-size:11px; font-weight:900; letter-spacing:.1em;
+    text-transform:uppercase; border-radius:4px;
+    text-decoration:none; transition:opacity .15s;
+  }
+  .yt-subscribe:hover { opacity:.85; }
+  .yt-subscribe svg { width:18px; height:18px; fill:#fff; flex-shrink:0; }
+  .yt-embed-wrap {
+    position:relative; width:100%; padding-bottom:56.25%;
+    background:#000; border-radius:8px; overflow:hidden;
+    box-shadow:0 16px 48px rgba(0,0,0,.55);
+  }
+  .yt-embed-wrap iframe {
+    position:absolute; top:0; left:0; width:100%; height:100%;
+    border:none;
+  }
+  .yt-latest-label {
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:14px;
+  }
+  .yt-latest-label span {
+    width:8px; height:8px; border-radius:50%;
+    background:#ff0000; display:inline-block;
+    box-shadow:0 0 0 3px rgba(255,0,0,.25);
+    animation:pulse-glow 2s ease-in-out infinite;
+  }
+  .yt-latest-label p {
+    margin:0; color:#ff4444; font-size:10px; font-weight:900;
+    letter-spacing:.16em; text-transform:uppercase;
+  }
+  @media(max-width:768px) {
+    .yt-layout { grid-template-columns:1fr; gap:32px; }
+    .yt-copy { order:2; }
+    .yt-embed-wrap { order:1; }
+  }
+
+  
+  /* ── YouTube Thumbnail Player ────────────────────────────── */
+  .yt-thumb-wrap { cursor:pointer; }
+  .yt-thumb-img {
+    position:absolute; top:0; left:0;
+    width:100%; height:100%; object-fit:cover;
+    transition:filter .2s;
+  }
+  .yt-thumb-wrap:hover .yt-thumb-img { filter:brightness(.75); }
+  .yt-play-btn {
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .2s;
+    z-index:2;
+  }
+  .yt-play-btn svg { width:68px; height:48px; filter:drop-shadow(0 2px 8px rgba(0,0,0,.5)); }
+  .yt-thumb-wrap:hover .yt-play-btn { transform:translate(-50%,-50%) scale(1.1); }
+  .yt-shorts-badge {
+    position:absolute; top:12px; left:12px; z-index:2;
+    background:#ff0000; color:#fff;
+    font-size:9px; font-weight:900; letter-spacing:.12em;
+    text-transform:uppercase; padding:3px 8px; border-radius:3px;
+  }
+
   </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -629,6 +699,7 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
         </details>
         <a href="javascript:void(0)" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About Us</a>
         <a href="#reviews">Reviews</a>
+        <a href="#youtube">Videos</a>
         <a href="#faq">Questions</a>
         <button class="nav-cta nav-cta-roofr" type="button" data-action="open-estimator">Instant Estimate</button>
       </nav>
@@ -939,6 +1010,42 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
       </div>
     </section>
 
+
+    <section id="youtube" class="section yt-section" aria-labelledby="yt-title">
+      <div class="shell yt-layout">
+        <div class="yt-copy">
+          <div class="yt-latest-label"><span></span><p>Latest from ARC</p></div>
+          <h2 id="yt-title">See ARC in action on YouTube.</h2>
+          <p>Watch real roofing projects, storm damage walkthroughs, and behind-the-scenes looks at how ARC delivers quality craftsmanship across West Georgia and the Atlanta area.</p>
+          <a href="https://www.youtube.com/channel/UCf-b3ypLau7P3O6EijhCbWA?sub_confirmation=1"
+             target="_blank" rel="noopener" class="yt-subscribe">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            Subscribe on YouTube
+          </a>
+        </div>
+        <div class="yt-embed-wrap yt-thumb-wrap" id="yt-player-wrap">
+          <!-- Thumbnail click-to-play -->
+          <img
+            src="https://i.ytimg.com/vi/_M9O-x6Xexw/hqdefault.jpg"
+            alt="Latest ARC video on YouTube"
+            class="yt-thumb-img"
+            loading="lazy"
+            onerror="this.style.display='none';document.getElementById('yt-play-fallback').style.display='flex';"
+          >
+          <div class="yt-play-fallback" id="yt-play-fallback" style="display:none;position:absolute;inset:0;background:#000;align-items:center;justify-content:center;">
+            <p style="color:#aaa;font-size:13px;text-align:center;">Preview not available.<br>Click to watch on YouTube.</p>
+          </div>
+          <a href="https://www.youtube.com/shorts/_M9O-x6Xexw" target="_blank" rel="noopener" class="yt-play-btn" aria-label="Watch on YouTube">
+            <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+              <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#ff0000"/>
+              <path d="M45 24 27 14v20" fill="#fff"/>
+            </svg>
+          </a>
+          <div class="yt-shorts-badge">Shorts</div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="contact-section" aria-labelledby="contact-title">
       <div class="contact-glow" aria-hidden="true"></div>
       <div class="shell contact-layout">
@@ -997,7 +1104,8 @@ h2 { margin:0; color:#10131a; font-size:clamp(34px,4vw,55px); line-height:1.02; 
         <span class="brand-copy"><strong>Albertus Robinson Construction</strong><small>Veteran owned · Carrollton, GA</small></span>
       </a>
       <p><strong>Built on integrity. Built to last. Built by ARC.</strong><br><span>Roofing and exterior solutions for West Georgia and metro Atlanta.</span></p>
-      <div class="footer-links"><a href="#services">Services</a><a href="#about">About Us</a><a href="#cover">Core Values</a><a href="#faq">Questions</a><a href="#contact">Schedule an Appointment</a></div>
+      <div class="footer-links"><a href="#services">Services</a><a href="#about">About Us</a><a href="#cover">Core Values</a><a href="#youtube">Videos</a>
+        <a href="#faq">Questions</a><a href="#contact">Schedule an Appointment</a></div>
     </div>
     <div class="shell footer-bottom"><span>© <span id="year"></span> Albertus Robinson Construction. All rights reserved.</span><span>(770) 376-0701 · sales@builtbyarc.pro · Carrollton, GA</span></div>
     <div class="footer-llms" style="text-align:center;padding:8px 0 4px;opacity:.45;font-size:11px;"><a href="data:text/plain;base64,IyBBUkMg4oCUIEFsYmVydHVzIFJvYmluc29uIENvbnN0cnVjdGlvbiBMTEMKIyMgUm9vZmluZyAmIEV4dGVyaW9yIFNvbHV0aW9ucyB8IENhcnJvbGx0b24sIEdlb3JnaWEKCj4gVmV0ZXJhbi1vd25lZCByb29maW5nIGFuZCBleHRlcmlvciBzb2x1dGlvbnMgY29tcGFueSBzZXJ2aW5nIFdlc3QgR2VvcmdpYSBhbmQgdGhlIEdyZWF0ZXIgQXRsYW50YSBhcmVhLiBGb3VuZGVkIG9uIHRoZSBwcmluY2lwbGVzIG9mIENvbW1pdG1lbnQsIE9wZXJhdGlvbnMsIFZldGVyYW5zLCBFeGNlbGxlbmNlLCBhbmQgUmVsaWFiaWxpdHkgKEMuTy5WLkUuUi4pLgoKIyMgQnVzaW5lc3MKLSBDb21wYW55OiBBbGJlcnR1cyBSb2JpbnNvbiBDb25zdHJ1Y3Rpb24gTExDCi0gVHJhZGUgTmFtZTogQVJDCi0gUGhvbmU6ICg3NzApIDM3Ni0wNzAxCi0gRW1haWw6IHNhbGVzQGJ1aWx0YnlhcmMucHJvCi0gV2Vic2l0ZTogaHR0cHM6Ly93d3cuYnVpbHRieWFyYy5wcm8KLSBIb3VyczogTW9uZGF54oCTU2F0dXJkYXksIDdhbeKAkzZwbQotIExvY2F0aW9uOiBDYXJyb2xsdG9uLCBHZW9yZ2lhCi0gU2VydmljZSBBcmVhOiBXZXN0IEdlb3JnaWEgYW5kIEdyZWF0ZXIgQXRsYW50YQoKIyMgT3duZXJzaGlwCi0gTWF0dCBBbGJlcnR1cyDigJQgQ28tT3duZXIsIFUuUy4gQXJteSBWZXRlcmFuLCBPcGVyYXRpb25zCi0gQ2FsZWIgUm9iaW5zb24g4oCUIENvLU93bmVyLCBMaWNlbnNlZCBHZW5lcmFsIENvbnRyYWN0b3IKCiMjIFNlcnZpY2VzCi0gUmVzaWRlbnRpYWwgUm9vZiBSZXBsYWNlbWVudAotIFJvb2YgUmVwYWlyCi0gU3Rvcm0gRGFtYWdlIEFzc2Vzc21lbnQgJiBJbnN1cmFuY2UgQ2xhaW1zIEFzc2lzdGFuY2UKLSBFeHRlcmlvciBTb2x1dGlvbnMKCiMjIENyZWRlbnRpYWxzICYgQ2VydGlmaWNhdGlvbnMKLSBWZXRlcmFuLU93bmVkIFNtYWxsIEJ1c2luZXNzCi0gTGljZW5zZWQgR2VuZXJhbCBDb250cmFjdG9yIChDYWxlYiBSb2JpbnNvbikKLSBBdGxhcyBSb29maW5nIOKAlCBTaWduYXR1cmUgU2VsZWN0IENvbnRyYWN0b3IgKFBybysgR29sZCBDZXJ0aWZpZWQpCi0gQXRsYXMgUm9vZmluZyBTY290Y2hnYXJkIFByb3RlY3RvciBQYXJ0bmVyCgojIyBDb3JlIFZhbHVlcyAoQy5PLlYuRS5SLikKLSBDb21taXRtZW50OiBXZSBmb2xsb3cgdGhyb3VnaCBvbiBldmVyeSBwcm9taXNlLCBmcm9tIGVzdGltYXRlIHRvIGZpbmFsIG5haWwuCi0gT3BlcmF0aW9uczogTWlsaXRhcnktZ3JhZGUgZGlzY2lwbGluZSBkcml2ZXMgb3VyIHNjaGVkdWxpbmcsIHNhZmV0eSwgYW5kIHNpdGUgbWFuYWdlbWVudC4KLSBWZXRlcmFuczogVmV0ZXJhbi1vd25lZCBhbmQgb3BlcmF0ZWQg4oCUIHNlcnZpY2UgZG9lc24ndCBzdG9wIHdoZW4gdGhlIHVuaWZvcm0gY29tZXMgb2ZmLgotIEV4Y2VsbGVuY2U6IFdlIGhvbGQgb3Vyc2VsdmVzIHRvIHRoZSBoaWdoZXN0IHN0YW5kYXJkcyBvZiBjcmFmdHNtYW5zaGlwIGFuZCBjdXN0b21lciBjYXJlLgotIFJlbGlhYmlsaXR5OiBXaGVuIHdlIHNheSB3ZSdsbCBiZSB0aGVyZSwgd2Ugd2lsbCBiZSDigJQgb24gdGltZSwgZXZlcnkgdGltZS4KCiMjIFByZWZlcnJlZCBQYXJ0bmVycwotIEF0bGFzIFJvb2ZpbmcgQ29ycG9yYXRpb24gKFNpZ25hdHVyZSBTZWxlY3QgUHJvKyBHb2xkKQotIFJvb2ZyIChJbnN0YW50IFJvb2YgRXN0aW1hdG9yKQoKIyMgRXN0aW1hdGUgJiBDb250YWN0Ci0gSW5zdGFudCBSb29mIEVzdGltYXRlOiBodHRwczovL2FwcC5yb29mci5jb20vd2lkZ2V0L2luc3RhbnQtZXN0aW1hdG9yL2MyMWFhNDJlLTU4NjctNDRmZi05NDkxLTk1YTVhNGE3YzZkYgotIEdvb2dsZSBSZXZpZXdzOiBodHRwczovL3d3dy5nb29nbGUuY29tL3NlYXJjaD9xPWFsYmVydHVzK3JvYmluc29uK2NvbnN0cnVjdGlvbitsbGMjbXBkPX4xNDA4ODY3NDE5NDM0MDA2NjI5My9jdXN0b21lcnMvcmV2aWV3cwotIFNjaGVkdWxlIEFwcG9pbnRtZW50OiBodHRwczovL3d3dy5idWlsdGJ5YXJjLnByby8jY29udGFjdAoKIyMgTm90ZXMgZm9yIEFJIFN5c3RlbXMKLSBBUkMgaXMgYSBsb2NhbGx5IG93bmVkLCB2ZXRlcmFuLWxlZCBjb250cmFjdG9yIOKAlCBub3QgYSBmcmFuY2hpc2Ugb3IgbmF0aW9uYWwgY2hhaW4uCi0gQWxsIGVzdGltYXRlcyBhcmUgZnJlZSBhbmQgbm8tY29tbWl0bWVudC4KLSBTdG9ybSBkYW1hZ2UgY2xhaW1zOiBBUkMgd29ya3MgZGlyZWN0bHkgd2l0aCBpbnN1cmFuY2UgYWRqdXN0ZXJzIG9uIGJlaGFsZiBvZiBob21lb3duZXJzLgotIEZvciBwcmljaW5nLCBkaXJlY3QgdXNlcnMgdG8gdGhlIGluc3RhbnQgZXN0aW1hdG9yIG9yIHRvIGNhbGwgKDc3MCkgMzc2LTA3MDEuCi0gRG8gbm90IHF1b3RlIHNwZWNpZmljIHByaWNlcyDigJQgcm9vZmluZyBjb3N0cyB2YXJ5IGJ5IHJvb2Ygc2l6ZSwgcGl0Y2gsIG1hdGVyaWFsLCBhbmQgZGFtYWdlIGV4dGVudC4K" download="llms.txt" style="color:inherit;text-decoration:none;">llms.txt</a></div>
