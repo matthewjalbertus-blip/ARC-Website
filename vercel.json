@@ -1,0 +1,6 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/realtors", "destination": "/arc-realtors.html" }
+  ]
+}
