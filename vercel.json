@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/realtors", "destination": "/arc-realtors.html" }
+    { "source": "/realtors", "destination": "/arc-realtors.html" },
+    { "source": "/referral", "destination": "/referral.html" }
   ]
 }
