@@ -369,8 +369,16 @@ textarea{min-height:100px;resize:vertical}
             <input type="text" id="p-address" name="property_address" autocomplete="street-address" placeholder="Street address">
           </div>
           <div class="field form-full">
-            <label for="p-city">City / ZIP</label>
-            <input type="text" id="p-city" name="city_zip" placeholder="Carrollton, GA / 30117">
+            <label for="p-city">City</label>
+            <input type="text" id="p-city" name="city" autocomplete="address-level2" placeholder="Carrollton">
+          </div>
+          <div class="field form-full">
+            <label for="p-state">State</label>
+            <input type="text" id="p-state" name="state" autocomplete="address-level1" maxlength="20" value="GA" placeholder="GA">
+          </div>
+          <div class="field form-full">
+            <label for="p-zip">ZIP Code</label>
+            <input type="text" id="p-zip" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="10" pattern="[0-9]{5}(-[0-9]{4})?" title="5-digit ZIP code" placeholder="30117">
           </div>
         </div>
         <button type="submit" class="btn-submit" data-fs-submit-btn>Partner with ARC</button>
