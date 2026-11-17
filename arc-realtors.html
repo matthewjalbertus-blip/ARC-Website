@@ -124,6 +124,7 @@ textarea{min-height:100px;resize:vertical}
 .form-success strong{color:#1a7a4a;display:block;font-size:17px;margin-bottom:6px}
 .form-error{display:none;background:#fff0f0;border:1px solid #eb5757;border-radius:6px;padding:16px;margin-top:12px;font-size:14px;color:#c0392b}
 .form-error.show{display:block}
+.form-success[data-fs-active],.form-error[data-fs-active]{display:block}
 
 /* ── Process Steps ── */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;counter-reset:step}
@@ -209,6 +210,20 @@ textarea{min-height:100px;resize:vertical}
 
 .field-err { font-size:12px; color:#c0392b; margin-top:3px; display:block; }
 [aria-invalid="true"] { border-color:#eb5757 !important; }
+
+/* ── Partner with ARC button + form ── */
+.partner-cta-row{margin-bottom:14px}
+.btn-partner{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,var(--blue-light) 0%,var(--blue) 100%);color:#fff;padding:14px 30px;border-radius:5px;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.09em;border:1px solid rgba(255,255,255,.35);animation:partnerFlash 1.6s ease-in-out infinite}
+.btn-partner:hover{color:#fff;animation-play-state:paused;filter:brightness(1.12)}
+.btn-partner::before{content:'';width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff}
+@keyframes partnerFlash{
+  0%,100%{box-shadow:0 0 0 0 rgba(45,141,249,.85),0 4px 16px rgba(45,141,249,.45);filter:brightness(1)}
+  50%{box-shadow:0 0 0 12px rgba(45,141,249,0),0 4px 26px rgba(45,141,249,.9);filter:brightness(1.25)}
+}
+@media(prefers-reduced-motion:reduce){.btn-partner{animation:none}}
+@media(max-width:480px){.btn-partner{display:flex;justify-content:center;width:100%}}
+.partner-form-wrap{max-width:860px}
+#partner-form .form-success,#partner-form .form-error{margin:0 0 16px}
 </style>
 
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
@@ -238,6 +253,9 @@ textarea{min-height:100px;resize:vertical}
       <h1 id="hero-title">A Roofing Partner for <em>West Georgia</em> Real Estate Professionals</h1>
       <p class="hero-sub">Roofing concerns shouldn't derail a real estate transaction.</p>
       <p class="hero-body">From inspection findings to repair estimates and roof replacement decisions, ARC Roofing helps West Georgia real estate professionals connect their clients with practical roofing solutions.</p>
+      <div class="partner-cta-row">
+        <a href="#partner" class="btn-partner" data-event="partner_cta_click">Partner with ARC</a>
+      </div>
       <div class="hero-ctas">
         <a href="#assessment" class="btn-primary" data-event="realtor_form_start">Request a REALTOR Roof Assessment</a>
         <a href="tel:+17703760701" class="btn-secondary" data-event="realtor_click_to_call">Talk Directly With ARC</a>
@@ -299,6 +317,64 @@ textarea{min-height:100px;resize:vertical}
         <h3>Buyer &amp; Seller Roofing Questions</h3>
         <p>Help clients understand roofing conditions, options, and potential next steps so they can make confident real estate decisions.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION C0: PARTNER FORM -->
+<section class="section" id="partner" aria-labelledby="partner-title">
+  <div class="shell">
+    <div class="centered" style="margin-bottom:36px">
+      <p class="sec-tag">Partner Program</p>
+      <h2 class="sec-h" id="partner-title">Partner with ARC</h2>
+      <p class="sec-body">Share your contact information and ARC will reach out to set up a roofing partnership for you and your clients.</p>
+    </div>
+    <div class="form-wrap partner-form-wrap">
+      <form id="partner-form" novalidate>
+        <div data-fs-success class="form-success" id="partner-success" role="status"><strong>✓ Thanks for Partnering with ARC</strong> Your information has been received. ARC Roofing will contact you shortly.</div>
+        <div data-fs-error class="form-error" id="partner-error" role="alert"></div>
+        <!-- Hidden fields: notification subject + attribution -->
+        <input type="hidden" name="_subject" value="New ARC Partner Request — REALTOR Page">
+        <input type="hidden" name="lead_type" value="REALTOR Partner">
+        <input type="hidden" name="lead_source" id="p-source" value="">
+        <input type="hidden" name="utm_source" id="p-utm-source" value="">
+        <input type="hidden" name="utm_medium" id="p-utm-medium" value="">
+        <input type="hidden" name="utm_campaign" id="p-utm-campaign" value="">
+        <input type="hidden" name="utm_content" id="p-utm-content" value="">
+        <input type="hidden" name="page_url" id="p-page-url" value="">
+        <input type="hidden" name="submitted_at" id="p-timestamp" value="">
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="p-name">Full Name <span class="req">*</span></label>
+            <input type="text" id="p-name" name="realtor_name" required autocomplete="name" placeholder="Your name">
+            <span data-fs-error="realtor_name" class="field-err"></span>
+          </div>
+          <div class="field">
+            <label for="p-brokerage">Brokerage / Company</label>
+            <input type="text" id="p-brokerage" name="brokerage" autocomplete="organization" placeholder="Your brokerage">
+          </div>
+          <div class="field">
+            <label for="p-email">Email Address <span class="req">*</span></label>
+            <input type="email" id="p-email" name="email" required autocomplete="email" placeholder="you@brokerage.com">
+            <span data-fs-error="email" class="field-err"></span>
+          </div>
+          <div class="field">
+            <label for="p-phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="p-phone" name="phone" required autocomplete="tel" placeholder="(770) 000-0000">
+            <span data-fs-error="phone" class="field-err"></span>
+          </div>
+          <div class="field form-full">
+            <label for="p-address">Property Address</label>
+            <input type="text" id="p-address" name="property_address" autocomplete="street-address" placeholder="Street address">
+          </div>
+          <div class="field form-full">
+            <label for="p-city">City / ZIP</label>
+            <input type="text" id="p-city" name="city_zip" placeholder="Carrollton, GA / 30117">
+          </div>
+        </div>
+        <button type="submit" class="btn-submit" data-fs-submit-btn>Partner with ARC</button>
+      </form>
     </div>
   </div>
 </section>
@@ -614,6 +690,20 @@ document.getElementById('realtor-form').addEventListener('submit', function() {
 }, true); // capture phase so it fires before Formspree
 
 formspree('initForm', { formElement: '#realtor-form', formId: 'mpppjrbb' });
+
+// ── Partner with ARC form (same Formspree inbox, its own email subject) ──
+(function(){
+  var src = document.getElementById('f-source').value;
+  var map = {'p-source':'f-source','p-utm-source':'f-utm-source','p-utm-medium':'f-utm-medium','p-utm-campaign':'f-utm-campaign','p-utm-content':'f-utm-content','p-page-url':'f-page-url'};
+  Object.keys(map).forEach(function(k){ document.getElementById(k).value = document.getElementById(map[k]).value; });
+  var pf = document.getElementById('partner-form');
+  pf.addEventListener('submit', function(e){
+    if(!pf.checkValidity()){ e.preventDefault(); e.stopImmediatePropagation(); pf.reportValidity(); return; }
+    document.getElementById('p-timestamp').value = new Date().toISOString();
+    trackEvent('partner_form_submit', { lead_source: src });
+  }, true);
+  formspree('initForm', { formElement: '#partner-form', formId: 'mpppjrbb' });
+})();
 </script>
 </body>
 </html>
