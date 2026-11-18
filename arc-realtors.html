@@ -224,6 +224,19 @@ textarea{min-height:100px;resize:vertical}
 @media(max-width:480px){.btn-partner{display:flex;justify-content:center;width:100%}}
 .partner-form-wrap{max-width:860px}
 #partner-form .form-success,#partner-form .form-error{margin:0 0 16px}
+
+/* ── Instant Estimator button (matches homepage hero-launch-btn) ── */
+.estimator-row{margin:22px 0 22px}
+.estimator-caption{font-size:clamp(18px,1.7vw,21px);font-weight:700;line-height:1.35;color:#fff;margin-bottom:10px}
+.hero-launch-btn{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#2fc25b 0%,#15873b 100%);color:#fff;border:none;border-radius:4px;font-family:inherit;font-size:14px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:14px 28px;text-align:center;text-decoration:none;box-shadow:0 3px 0 rgba(0,0,0,.4),0 5px 12px rgba(31,170,80,.45);animation:pulse-glow 2s ease-in-out infinite}
+.hero-launch-btn:hover{animation:none;opacity:.9;color:#fff}
+@keyframes pulse-glow{
+  0%{box-shadow:0 0 0 0 rgba(47,194,91,.7),0 3px 0 rgba(0,0,0,.4);transform:scale(1)}
+  50%{box-shadow:0 0 0 10px rgba(47,194,91,0),0 3px 0 rgba(0,0,0,.4);transform:scale(1.03)}
+  100%{box-shadow:0 0 0 0 rgba(47,194,91,.7),0 3px 0 rgba(0,0,0,.4);transform:scale(1)}
+}
+@media(prefers-reduced-motion:reduce){.hero-launch-btn{animation:none}}
+@media(max-width:480px){.hero-launch-btn{display:flex;width:100%}}
 </style>
 
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
@@ -255,6 +268,10 @@ textarea{min-height:100px;resize:vertical}
       <p class="hero-body">From inspection findings to repair estimates and roof replacement decisions, ARC Roofing helps West Georgia real estate professionals connect their clients with practical roofing solutions.</p>
       <div class="partner-cta-row">
         <a href="#partner" class="btn-partner" data-event="partner_cta_click">Partner with ARC</a>
+      </div>
+      <div class="estimator-row">
+        <p class="estimator-caption">Does your client need to know roughly what their roof might cost?</p>
+        <a href="/estimate.html" class="hero-launch-btn" data-event="realtor_estimator_click">Launch Instant Estimator</a>
       </div>
       <div class="hero-ctas">
         <a href="#assessment" class="btn-primary" data-event="realtor_form_start">Request a REALTOR Roof Assessment</a>
